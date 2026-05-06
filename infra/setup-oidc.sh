@@ -85,20 +85,27 @@ retry_graph_call() {
   shift
   local max_attempts=12   # 12 × 10s = 120s
   local attempt=0
-  local output=""
+  local stdout_file stderr_file
+  stdout_file="$(mktemp)"
+  stderr_file="$(mktemp)"
+  trap 'rm -f "${stdout_file}" "${stderr_file}"' RETURN
   while (( attempt < max_attempts )); do
-    if output="$("$@" 2>/dev/null)" && [[ -n "${output}" ]]; then
-      printf '%s' "${output}"
+    if "$@" >"${stdout_file}" 2>"${stderr_file}" && [[ -s "${stdout_file}" ]]; then
+      cat "${stdout_file}"
       return 0
     fi
     attempt=$((attempt + 1))
-    if (( attempt == max_attempts )); then
-      echo "error: ${label} failed after ${max_attempts} attempts" >&2
-      echo "       wait a minute and re-run; the script is idempotent" >&2
-      return 1
-    fi
     if (( attempt == 1 )); then
-      echo "    ${label}: not ready yet (Graph propagation); retrying..." >&2
+      printf '\n    %s: attempt 1 failed. Underlying stderr:\n' "${label}" >&2
+      sed 's/^/        /' "${stderr_file}" >&2
+      printf '    retrying up to %d more times with 10s backoff...\n' \
+        $((max_attempts - 1)) >&2
+    fi
+    if (( attempt == max_attempts )); then
+      printf '\nerror: %s failed after %d attempts. Last stderr:\n' \
+        "${label}" "${max_attempts}" >&2
+      sed 's/^/    /' "${stderr_file}" >&2
+      return 1
     fi
     sleep 10
   done
