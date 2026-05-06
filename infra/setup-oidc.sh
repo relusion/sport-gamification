@@ -73,6 +73,31 @@ if ! az group show -n "${RESOURCE_GROUP}" >/dev/null 2>&1; then
   exit 1
 fi
 
+# Microsoft Graph has a brief replication lag (typically a few seconds, up
+# to ~60s in the worst case) after `az ad app create` before the new app
+# is readable by `az ad sp create` / `az ad app federated-credential ...`.
+# Without polling, the very next call fails with a confusing
+# `JSONDecodeError: Expecting value: line 1 column 1 (char 0)` because
+# Graph returns an empty body during propagation. Poll until the app is
+# queryable before continuing.
+wait_for_app_in_graph() {
+  local app_id="$1"
+  local max_attempts=24       # 24 × 5s = 120s
+  local attempt=0
+  while (( attempt < max_attempts )); do
+    if az ad app show --id "${app_id}" >/dev/null 2>&1; then
+      return 0
+    fi
+    attempt=$((attempt + 1))
+    if (( attempt == 1 )); then
+      echo "    waiting for App Registration to propagate in Microsoft Graph..."
+    fi
+    sleep 5
+  done
+  echo "error: App Registration ${app_id} not visible in Graph after $((max_attempts * 5))s" >&2
+  return 1
+}
+
 echo "==> Ensuring App Registration: ${APP_DISPLAY_NAME}"
 APP_ID="$(az ad app list --display-name "${APP_DISPLAY_NAME}" --query '[0].appId' -o tsv 2>/dev/null || true)"
 if [[ -z "${APP_ID}" ]]; then
@@ -81,11 +106,29 @@ if [[ -z "${APP_ID}" ]]; then
 else
   echo "    found existing App Registration appId=${APP_ID}"
 fi
+wait_for_app_in_graph "${APP_ID}"
 
 echo "==> Ensuring Service Principal for appId=${APP_ID}"
 SP_OBJECT_ID="$(az ad sp list --filter "appId eq '${APP_ID}'" --query '[0].id' -o tsv 2>/dev/null || true)"
 if [[ -z "${SP_OBJECT_ID}" ]]; then
-  SP_OBJECT_ID="$(az ad sp create --id "${APP_ID}" --query id -o tsv)"
+  # Defense-in-depth retry: even after `az ad app show` returns OK,
+  # Graph occasionally still 404s the very next `az ad sp create` from
+  # a different region replica. Retry a handful of times with backoff.
+  sp_create_attempts=6
+  for ((sp_attempt = 1; sp_attempt <= sp_create_attempts; sp_attempt++)); do
+    if SP_OBJECT_ID="$(az ad sp create --id "${APP_ID}" --query id -o tsv 2>/dev/null)" \
+       && [[ -n "${SP_OBJECT_ID}" ]]; then
+      break
+    fi
+    SP_OBJECT_ID=""
+    if (( sp_attempt == sp_create_attempts )); then
+      echo "error: az ad sp create --id ${APP_ID} failed after ${sp_create_attempts} attempts" >&2
+      echo "       wait a minute and re-run; the script is idempotent" >&2
+      exit 1
+    fi
+    echo "    sp create not ready (attempt ${sp_attempt}/${sp_create_attempts}); retrying after backoff..."
+    sleep 10
+  done
   echo "    created Service Principal objectId=${SP_OBJECT_ID}"
 else
   echo "    found existing Service Principal objectId=${SP_OBJECT_ID}"
