@@ -60,9 +60,18 @@ require_command() {
 require_command az
 require_command jq
 
+# On Windows under Git Bash / MSYS, `az.cmd` emits CRLF and bash's $(...)
+# capture preserves the trailing \r. The \r corrupts every downstream
+# interpolation — Graph rejects an appId of "<guid>\r" with
+# "Invalid value specified for property 'appId'", and the carriage
+# return rewinds the cursor on every diagnostic message we print. Strip
+# CR from every captured az output. (No-op on Linux / macOS where az
+# emits LF only.)
+azs() { "$@" | tr -d '\r'; }
+
 echo "==> Resolving subscription and tenant from current az context..."
-SUBSCRIPTION_ID="$(az account show --query id -o tsv)"
-TENANT_ID="$(az account show --query tenantId -o tsv)"
+SUBSCRIPTION_ID="$(azs az account show --query id -o tsv)"
+TENANT_ID="$(azs az account show --query tenantId -o tsv)"
 echo "    subscription: ${SUBSCRIPTION_ID}"
 echo "    tenant:       ${TENANT_ID}"
 
@@ -112,16 +121,16 @@ retry_graph_call() {
 }
 
 echo "==> Ensuring App Registration: ${APP_DISPLAY_NAME}"
-APP_ID="$(az ad app list --display-name "${APP_DISPLAY_NAME}" --query '[0].appId' -o tsv 2>/dev/null || true)"
+APP_ID="$(azs az ad app list --display-name "${APP_DISPLAY_NAME}" --query '[0].appId' -o tsv 2>/dev/null || true)"
 if [[ -z "${APP_ID}" ]]; then
-  APP_ID="$(az ad app create --display-name "${APP_DISPLAY_NAME}" --query appId -o tsv)"
+  APP_ID="$(azs az ad app create --display-name "${APP_DISPLAY_NAME}" --query appId -o tsv)"
   echo "    created App Registration appId=${APP_ID}"
 else
   echo "    found existing App Registration appId=${APP_ID}"
 fi
 
 echo "==> Ensuring Service Principal for appId=${APP_ID}"
-SP_OBJECT_ID="$(az ad sp list --filter "appId eq '${APP_ID}'" --query '[0].id' -o tsv 2>/dev/null || true)"
+SP_OBJECT_ID="$(azs az ad sp list --filter "appId eq '${APP_ID}'" --query '[0].id' -o tsv 2>/dev/null || true)"
 if [[ -z "${SP_OBJECT_ID}" ]]; then
   # Use the Microsoft Graph REST endpoint directly via `az rest` instead
   # of `az ad sp create`. The latter has a long history of failing with
@@ -135,7 +144,7 @@ if [[ -z "${SP_OBJECT_ID}" ]]; then
       --url 'https://graph.microsoft.com/v1.0/servicePrincipals' \
       --headers 'Content-Type=application/json' \
       --body "{\"appId\":\"${APP_ID}\"}" \
-      --query id -o tsv
+      --query id -o tsv | tr -d '\r'
   }
   SP_OBJECT_ID="$(retry_graph_call "create service principal for appId=${APP_ID}" \
     graph_create_sp)" || exit 1
@@ -148,7 +157,7 @@ ensure_federated_credential() {
   local cred_name="$1"
   local subject="$2"
   local existing
-  existing="$(az ad app federated-credential list --id "${APP_ID}" \
+  existing="$(azs az ad app federated-credential list --id "${APP_ID}" \
     --query "[?name=='${cred_name}'].name" -o tsv 2>/dev/null || true)"
   if [[ -n "${existing}" ]]; then
     echo "    federated credential '${cred_name}' already present"
@@ -170,7 +179,7 @@ ensure_federated_credential "${DISPATCH_CRED_NAME}" "${GH_DISPATCH_SUBJECT}"
 
 echo "==> Ensuring RG-scoped Contributor role assignment"
 RG_SCOPE="/subscriptions/${SUBSCRIPTION_ID}/resourceGroups/${RESOURCE_GROUP}"
-EXISTING_ROLE="$(az role assignment list \
+EXISTING_ROLE="$(azs az role assignment list \
   --assignee "${SP_OBJECT_ID}" \
   --role "Contributor" \
   --scope "${RG_SCOPE}" \
