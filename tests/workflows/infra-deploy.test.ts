@@ -26,7 +26,10 @@ function stripLineComments(source: string): string {
     .map((line) => {
       const match = line.match(/(^|\s)#/);
       if (!match) return line;
-      const idx = match.index! + match[1].length;
+      // Group 1 — `(^|\s)` — always captures (possibly empty) when the
+      // regex matches, so the non-null assertions are sound under
+      // `noUncheckedIndexedAccess`.
+      const idx = match.index! + match[1]!.length;
       return line.slice(0, idx);
     })
     .join("\n");
