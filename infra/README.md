@@ -67,12 +67,33 @@ federated-credential subject for `workflow_dispatch` runs matches.
 
 ## Apply the IaC (each time the template changes)
 
-The deploy workflow does **not** apply Bicep — steady-state IaC is operator-
-applied so the per-push deploy lane stays fast and IAM changes stay off the
-push-to-main path. Apply manually whenever `main.bicep` or `budget.bicep`
-changes.
+The push-to-main deploy workflow does **not** apply Bicep — steady-state IaC
+is operator-triggered so the per-push deploy lane stays fast and IAM changes
+stay off the push-to-main path.
 
-### 1. Resource-group resources
+`main.bicep` has a dedicated **manual** GitHub Actions workflow for routine
+re-applies; `budget.bicep` remains a local-CLI step. Both still ultimately
+target the same RG / subscription, so the equivalence below holds.
+
+### 1. Resource-group resources (`main.bicep`)
+
+**Recommended — manual GitHub Actions run** (uses the same OIDC trust as the
+deploy workflow; runs `az deployment group what-if` before the apply so
+operators see the planned change set):
+
+> *Actions → Infra Deploy → Run workflow* (`workflow_dispatch`) — pick the
+> `appServicePlanSku` (`F1` / `B1`) and click **Run**. The workflow consumes
+> `vars.AZURE_RESOURCE_GROUP` and `vars.AZURE_WEBAPP_NAME` from the
+> `production` environment. Concurrent runs against the same RG are
+> serialised by a concurrency group.
+>
+> Defined in `.github/workflows/infra-deploy.yml`. Scope is **`main.bicep`
+> only** — the OIDC service principal provisioned by `setup-oidc.sh` has
+> RG-scoped Contributor, which is exactly what `main.bicep` needs and is
+> intentionally **not** sufficient for `budget.bicep` (sub-scoped, see § 2).
+
+**Equivalent local CLI** (use when iterating without pushing the branch, or
+when the GitHub UI is unavailable):
 
 ```bash
 az group create -n <rg-name> -l westeurope    # first run only
@@ -97,6 +118,14 @@ Required parameters:
 Re-running against an existing RG produces no drift (Bicep is declarative).
 
 ### 2. Subscription-scoped Consumption Budget
+
+Operator-CLI only — there is no GHA equivalent. `budget.bicep` deploys at
+**subscription scope**, but the OIDC service principal from `setup-oidc.sh`
+is intentionally narrowed to **RG-scoped** Contributor. Automating this
+apply would require widening the SP to a sub-scoped role
+(e.g. `Cost Management Contributor`) and is deliberately deferred — budgets
+change rarely (once per amount/email rotation), so operator-applied is
+cheaper than carrying the wider blast radius.
 
 ```bash
 az deployment sub create \
