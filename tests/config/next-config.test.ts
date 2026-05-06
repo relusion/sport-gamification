@@ -16,6 +16,13 @@ describe("next.config — App Service deploy preconditions", () => {
     expect(nextConfig.outputFileTracingRoot).toBe(repoRoot);
   });
 
+  it("force-includes styled-jsx so the standalone server doesn't crash with `Cannot find module 'styled-jsx/package.json'`", () => {
+    const includes = nextConfig.outputFileTracingIncludes;
+    expect(includes).toBeDefined();
+    const wildcard = includes?.["*"] ?? [];
+    expect(wildcard.some((glob) => glob.includes("styled-jsx"))).toBe(true);
+  });
+
   it("keeps the static security-headers fallback in place", () => {
     expect(typeof nextConfig.headers).toBe("function");
   });
