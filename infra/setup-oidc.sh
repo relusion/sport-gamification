@@ -116,8 +116,22 @@ fi
 echo "==> Ensuring Service Principal for appId=${APP_ID}"
 SP_OBJECT_ID="$(az ad sp list --filter "appId eq '${APP_ID}'" --query '[0].id' -o tsv 2>/dev/null || true)"
 if [[ -z "${SP_OBJECT_ID}" ]]; then
-  SP_OBJECT_ID="$(retry_graph_call "az ad sp create --id ${APP_ID}" \
-    az ad sp create --id "${APP_ID}" --query id -o tsv)" || exit 1
+  # Use the Microsoft Graph REST endpoint directly via `az rest` instead
+  # of `az ad sp create`. The latter has a long history of failing with
+  # `JSONDecodeError: Expecting value: line 1 column 1 (char 0)` on
+  # certain CLI builds (especially Windows az.cmd) when Graph returns a
+  # non-JSON response or the internal application_get pre-check stumbles.
+  # `az rest` is a thin wrapper around the Graph HTTP API, so we see the
+  # real status code instead of a Python traceback.
+  graph_create_sp() {
+    az rest --method POST \
+      --url 'https://graph.microsoft.com/v1.0/servicePrincipals' \
+      --headers 'Content-Type=application/json' \
+      --body "{\"appId\":\"${APP_ID}\"}" \
+      --query id -o tsv
+  }
+  SP_OBJECT_ID="$(retry_graph_call "create service principal for appId=${APP_ID}" \
+    graph_create_sp)" || exit 1
   echo "    created Service Principal objectId=${SP_OBJECT_ID}"
 else
   echo "    found existing Service Principal objectId=${SP_OBJECT_ID}"
