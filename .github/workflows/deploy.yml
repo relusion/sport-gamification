@@ -59,10 +59,12 @@ jobs:
         #   server.js                          (from .next/standalone/)
         #   node_modules/                      (from .next/standalone/)
         #   .next/static/                      (copied from build output)
-        #   public/                            (copied from repo)
+        #   public/                            (copied from repo, if present)
         #   package.json                       (minimal stub for App Service)
         # WEBSITE_RUN_FROM_PACKAGE=1 mounts this zip read-only and runs
         # `node server.js` (App Service's startup command).
+        # public/ is optional in Next.js — copy only when it exists so this
+        # workflow works for repos that don't ship static assets.
         run: |
           set -euo pipefail
           STAGE="$RUNNER_TEMP/app"
@@ -70,7 +72,11 @@ jobs:
           mkdir -p "$STAGE/.next"
           cp -r .next/standalone/. "$STAGE/"
           cp -r .next/static "$STAGE/.next/static"
-          cp -r public "$STAGE/public"
+          if [ -d public ]; then
+            cp -r public "$STAGE/public"
+          else
+            echo "no ./public directory; skipping (Next public/ is optional)"
+          fi
           cat > "$STAGE/package.json" <<'PKGEOF'
           {
             "name": "movequest",

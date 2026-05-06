@@ -60,9 +60,12 @@ describe(".github/workflows/deploy.yml — push-to-main → Azure App Service", 
     expect(buildIdx).toBeGreaterThan(validateIdx);
   });
 
-  it("packages `.next/standalone`, `.next/static`, `public`, and a minimal package.json stub", () => {
+  it("packages `.next/standalone`, `.next/static`, optional `public`, and a minimal package.json stub", () => {
     expect(workflow).toMatch(/cp -r \.next\/standalone\/\. /);
     expect(workflow).toMatch(/cp -r \.next\/static /);
+    // public/ is optional — guarded by an `if [ -d public ]` check so
+    // repos without static assets don't fail the package step.
+    expect(workflow).toMatch(/if \[ -d public \]/);
     expect(workflow).toMatch(/cp -r public /);
     expect(workflow).toMatch(/PKGEOF/); // marks the heredoc that writes the stub
     expect(workflow).toMatch(/zip -qr/);
