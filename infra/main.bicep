@@ -22,7 +22,7 @@ param webAppName string
   'F1'
   'B1'
 ])
-param appServicePlanSku string = 'F1'
+param appServicePlanSku string = 'B1'
 
 @description('Linux App Service Plan name. Defaults to asp-<webAppName>.')
 param appServicePlanName string = 'asp-${webAppName}'

@@ -86,8 +86,10 @@ describe("infra/main.bicep — RG-scoped resources for App Service deploy", () =
     expect(mainCode).toMatch(/^\s*param\s+location\s+string\s*=\s*'westeurope'/m);
   });
 
-  it("defaults `appServicePlanSku` to F1 (free tier first; B1 is a documented promotion)", () => {
-    expect(mainCode).toMatch(/^\s*param\s+appServicePlanSku\s+string\s*=\s*'F1'/m);
+  it("defaults `appServicePlanSku` to B1 (Always On, no F1 daily-CPU lockout)", () => {
+    expect(mainCode).toMatch(/^\s*param\s+appServicePlanSku\s+string\s*=\s*'B1'/m);
+    // Both SKUs remain in the allowed list — F1 is still selectable for
+    // cost-optimisation re-applies, see infra/README.md "F1 ↔ B1 promotion".
     expect(mainCode).toMatch(/'F1'[\s\S]*'B1'/);
   });
 
