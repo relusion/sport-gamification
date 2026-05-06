@@ -1,0 +1,320 @@
+{
+  "archetypes": {
+    "fast-team-explorer": {
+      "name": "Fast Team Explorer",
+      "description": "You shine in fast-paced group games and love sharing the moment with teammates.",
+      "flavor": "Quick feet, sharp eyes, big team energy."
+    },
+    "precision-challenger": {
+      "name": "Precision Challenger",
+      "description": "You love sharpening a single skill until it clicks — focused, careful, and steady.",
+      "flavor": "One target. One swing. One perfect line."
+    },
+    "balance-rhythm-creator": {
+      "name": "Balance & Rhythm Creator",
+      "description": "Your body finds the beat. You move with grace and turn motion into expression.",
+      "flavor": "Where music meets movement."
+    },
+    "outdoor-endurance-adventurer": {
+      "name": "Outdoor Endurance Adventurer",
+      "description": "You feel best on long trails and open paths — moving steadily, breathing deeply.",
+      "flavor": "Big sky, long miles, easy mind."
+    },
+    "power-builder": {
+      "name": "Power Builder",
+      "description": "You like the feel of working hard and getting stronger one rep at a time.",
+      "flavor": "Lift, push, repeat. Stronger every week."
+    },
+    "strategy-mover": {
+      "name": "Strategy Mover",
+      "description": "You love games where reading the play matters as much as running fast.",
+      "flavor": "Think a step ahead. Then make the move."
+    },
+    "calm-focus-mover": {
+      "name": "Calm & Focus Mover",
+      "description": "You move best when it’s quiet — slow, mindful, and steady on your feet.",
+      "flavor": "Steady breath, steady stance."
+    },
+    "skill-trick-explorer": {
+      "name": "Skill & Trick Explorer",
+      "description": "You like learning tricks, mixing combinations, and finding new ways to move.",
+      "flavor": "New trick today. Better one tomorrow."
+    },
+    "water-flow-explorer": {
+      "name": "Water Flow Explorer",
+      "description": "You feel calm and curious when you’re moving in the water.",
+      "flavor": "Water teaches the body to flow."
+    },
+    "flexible-performer": {
+      "name": "Flexible Performer",
+      "description": "Your body bends and stretches; you love showing what it can do.",
+      "flavor": "Stretch, shape, perform."
+    }
+  },
+  "activities": {
+    "yoga": {
+      "name": "Yoga",
+      "description": "Gentle stretching and balance poses that help you breathe and focus.",
+      "fit": "Calm focus and steady balance — yoga gives both."
+    },
+    "tai-chi": {
+      "name": "Tai Chi",
+      "description": "Slow, flowing movements that build balance and quiet attention.",
+      "fit": "A calm flow that fits your slow-and-steady rhythm."
+    },
+    "martial-arts": {
+      "name": "Martial Arts",
+      "description": "Step-by-step routines that build strength, balance, and self-control.",
+      "fit": "Structured drills with focus, balance, and respectful sparring."
+    },
+    "dance": {
+      "name": "Dance",
+      "description": "Move to the music — many styles, lots of expression.",
+      "fit": "Rhythm, expression, and freedom in every step."
+    },
+    "ballet": {
+      "name": "Ballet",
+      "description": "A classic, precise art of balance, poise, and storytelling through movement.",
+      "fit": "Precise shapes, beautiful balance, expressive lines."
+    },
+    "gymnastics": {
+      "name": "Gymnastics",
+      "description": "Tumbling, jumps, and balance skills on mats and apparatus.",
+      "fit": "Bend, balance, leap — gymnastics rewards every kind of body skill."
+    },
+    "swimming": {
+      "name": "Swimming",
+      "description": "Move through water using strokes you can practice at any pace.",
+      "fit": "Water gives a steady, calm space to find your rhythm."
+    },
+    "surfing": {
+      "name": "Surfing",
+      "description": "Stand on a board and ride ocean waves.",
+      "fit": "Wave-by-wave balance and the joy of being on water."
+    },
+    "kayaking": {
+      "name": "Kayaking",
+      "description": "Paddle a small boat on lakes, rivers, or calm sea.",
+      "fit": "Quiet water, long strokes, easy outdoor adventure."
+    },
+    "rock-climbing": {
+      "name": "Rock Climbing",
+      "description": "Climb walls and routes using grip, balance, and problem-solving.",
+      "fit": "Strength meets focus on every route you choose."
+    },
+    "hiking": {
+      "name": "Hiking",
+      "description": "Walk trails outside — short loops or long adventures.",
+      "fit": "Long paths, fresh air, and easy company with your own thoughts."
+    },
+    "running": {
+      "name": "Running",
+      "description": "Move at your own pace — track, trail, or treadmill.",
+      "fit": "Steady miles that match your endurance and energy."
+    },
+    "cycling": {
+      "name": "Cycling",
+      "description": "Ride a bike on roads, trails, or paths.",
+      "fit": "Outdoor distance, your speed, your route."
+    },
+    "skateboarding": {
+      "name": "Skateboarding",
+      "description": "Roll, push, and learn tricks on a board.",
+      "fit": "Free-style balance and your own creative flow."
+    },
+    "parkour": {
+      "name": "Parkour",
+      "description": "Jump, climb, and move smoothly through obstacles.",
+      "fit": "Freedom, balance, and bursts of energy through every move."
+    },
+    "football": {
+      "name": "Football (Soccer)",
+      "description": "Team sport played with feet on a large field.",
+      "fit": "A team game with running room and steady stamina."
+    },
+    "basketball": {
+      "name": "Basketball",
+      "description": "Fast team game played on a court with a hoop.",
+      "fit": "Quick bursts, team plays, and indoor or outdoor energy."
+    },
+    "volleyball": {
+      "name": "Volleyball",
+      "description": "Team game where players keep a ball off the ground using hands.",
+      "fit": "Sharp coordination and bursts of teamwork."
+    },
+    "tennis": {
+      "name": "Tennis",
+      "description": "Hit a ball back and forth across a net — solo or doubles.",
+      "fit": "A focused rally where coordination and structure matter."
+    },
+    "badminton": {
+      "name": "Badminton",
+      "description": "Hit a shuttlecock over a net, indoors or out.",
+      "fit": "Quick reactions in a tidy structured game."
+    },
+    "table-tennis": {
+      "name": "Table Tennis",
+      "description": "A small, fast indoor net game.",
+      "fit": "Speed, focus, and small precise moves."
+    },
+    "baseball": {
+      "name": "Baseball",
+      "description": "Classic outdoor team sport with bats, mitts, and bases.",
+      "fit": "Outdoor team play with structured roles."
+    },
+    "archery": {
+      "name": "Archery",
+      "description": "Shoot arrows at a target using bow and steady focus.",
+      "fit": "Quiet focus and one careful shot at a time."
+    },
+    "fencing": {
+      "name": "Fencing",
+      "description": "A classic sport of speed, focus, and structured duels.",
+      "fit": "Fast footwork in a tidy structured frame."
+    },
+    "boxing": {
+      "name": "Boxing",
+      "description": "Step-by-step training that builds strength, footwork, and timing.",
+      "fit": "Power, drills, and focused energy on the bag."
+    },
+    "weightlifting": {
+      "name": "Weightlifting",
+      "description": "Build strength with progressive lifts and structured plans.",
+      "fit": "Pure structured strength work, one rep at a time."
+    },
+    "rowing": {
+      "name": "Rowing",
+      "description": "Pull oars together as a team on the water.",
+      "fit": "Team rhythm and long endurance on water."
+    },
+    "ultimate-frisbee": {
+      "name": "Ultimate Frisbee",
+      "description": "Outdoor team game with a flying disc.",
+      "fit": "Teamwork with a freeform, outdoor twist."
+    },
+    "capoeira": {
+      "name": "Capoeira",
+      "description": "Brazilian movement art that mixes dance, music, and acrobatics.",
+      "fit": "Rhythm, expression, and balance all at once."
+    },
+    "trampoline": {
+      "name": "Trampoline",
+      "description": "Bounce, twist, and learn aerial tricks.",
+      "fit": "Bursts of expression and balance on every bounce."
+    },
+    "ice-skating": {
+      "name": "Ice Skating",
+      "description": "Glide on ice — figure skating, recreational, or learn-to-skate.",
+      "fit": "Smooth balance with rhythm and grace."
+    },
+    "skiing": {
+      "name": "Skiing",
+      "description": "Slide down snowy slopes with practice or instruction.",
+      "fit": "Outdoor balance and energy in winter snow."
+    },
+    "bouldering": {
+      "name": "Bouldering",
+      "description": "Climb shorter walls without a rope — short bursts of focused effort.",
+      "fit": "Strong grip, careful balance, indoor problem-solving."
+    }
+  },
+  "tags": {
+    "social": { "name": "Social" },
+    "team": { "name": "Team" },
+    "solo": { "name": "Solo" },
+    "small-group": { "name": "Small group" },
+    "instructor-led": { "name": "Instructor-led" },
+    "energy": { "name": "Energetic" },
+    "burst": { "name": "Bursts of energy" },
+    "calm": { "name": "Calm" },
+    "indoor": { "name": "Indoor" },
+    "outdoor": { "name": "Outdoor" },
+    "water": { "name": "Water" },
+    "endurance": { "name": "Endurance" },
+    "balance": { "name": "Balance" },
+    "flexibility": { "name": "Flexibility" },
+    "strength": { "name": "Strength" },
+    "coordination": { "name": "Coordination" },
+    "speed": { "name": "Speed" },
+    "rhythm": { "name": "Rhythm" },
+    "contact-none": { "name": "No contact" },
+    "contact-incidental": { "name": "Light contact" },
+    "contact-controlled": { "name": "Controlled contact" },
+    "contact-high": { "name": "Full contact" },
+    "cost-minimal": { "name": "Very low cost" },
+    "cost-low": { "name": "Low cost" },
+    "cost-medium": { "name": "Medium cost" },
+    "cost-high": { "name": "Higher cost" },
+    "equipment-minimal": { "name": "Almost no gear" },
+    "equipment-low": { "name": "A little gear" },
+    "equipment-medium": { "name": "Some gear" },
+    "equipment-high": { "name": "Lots of gear" },
+    "all-season": { "name": "All seasons" },
+    "spring": { "name": "Spring" },
+    "summer": { "name": "Summer" },
+    "autumn": { "name": "Autumn" },
+    "winter": { "name": "Winter" },
+    "focus": { "name": "Focus" },
+    "freeform": { "name": "Freeform" },
+    "structured": { "name": "Structured" },
+    "expression": { "name": "Expression" },
+    "practical": { "name": "Practical" },
+    "morning": { "name": "Mornings" },
+    "evening": { "name": "Evenings" }
+  },
+  "components": {
+    "preference_fit": "Preferences",
+    "environment_fit": "Environment",
+    "social_fit": "Social style",
+    "confidence_fit": "Confidence",
+    "practical_fit": "Practical fit"
+  },
+  "results": {
+    "heroHeadline": "Here is your movement style",
+    "supportingArchetypesHeading": "You also lean toward",
+    "whyThisFitsHeading": "Why this fits you",
+    "exploratoryDisclaimer": "This is a starting point, not a final answer — try a few and see what feels right.",
+    "revealCta": "Reveal activity ideas",
+    "revealCtaSubtitle": "We'll show you a handful of activities that match your style.",
+    "activityGridHeading": "Activities to try",
+    "restartButton": "Start over",
+    "reviewLink": "Review my answers",
+    "confidenceMeters": {
+      "easyToStart": "Easy to start",
+      "needsLessons": "Lessons help a lot",
+      "needsEquipment": "Needs some gear",
+      "needsTeam": "Best with a team"
+    },
+    "tagFamilies": {
+      "environment": "Where",
+      "social": "Who with",
+      "beginnerFriendliness": "How easy",
+      "equipmentLevel": "Gear"
+    },
+    "attributeValues": {
+      "environment": {
+        "indoor": "Indoor",
+        "outdoor": "Outdoor",
+        "water": "Water"
+      },
+      "socialMode": {
+        "solo": "Solo",
+        "team": "Team",
+        "small-group": "Small group",
+        "instructor-led": "Instructor-led"
+      },
+      "beginnerFriendliness": {
+        "low": "Needs practice",
+        "medium": "Builds steadily",
+        "high": "Beginner-friendly"
+      },
+      "equipmentLevel": {
+        "none": "No gear",
+        "minimal": "Tiny bit of gear",
+        "low": "Light gear",
+        "medium": "Some gear",
+        "high": "Lots of gear"
+      }
+    }
+  }
+}

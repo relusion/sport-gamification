@@ -1,0 +1,149 @@
+name: Deploy
+
+# Push to main is the golden path. workflow_dispatch is the manual lane and
+# pins the deploy job to the `production` GitHub environment so the
+# federated-credential subject (repo:<owner>/<repo>:environment:production)
+# matches what infra/setup-oidc.sh provisioned.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# OIDC token exchange via azure/login@v2 — the only credential surface.
+# No client secrets, publish profiles, or service-principal passwords are
+# ever exchanged (constraint: no-long-lived-azure-secrets).
+permissions:
+  id-token: write
+  contents: read
+
+# Allow only one in-flight deploy per ref so two pushes don't race for the
+# atomic WEBSITE_RUN_FROM_PACKAGE swap.
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build, deploy, smoke
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Enable Corepack (pnpm 9 from packageManager field)
+        run: corepack enable
+
+      - name: Set up Node from .nvmrc
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # validate:content runs BEFORE next build so a content-validation
+      # failure fails the workflow before any artifact is produced
+      # (constraint: validate-content-before-build).
+      - name: Validate content
+        run: pnpm validate:content
+
+      - name: Build (Next.js standalone)
+        run: pnpm build
+        env:
+          NODE_ENV: production
+
+      - name: Package standalone artifact
+        # Layout inside the zip:
+        #   server.js                          (from .next/standalone/)
+        #   node_modules/                      (from .next/standalone/)
+        #   .next/static/                      (copied from build output)
+        #   public/                            (copied from repo)
+        #   package.json                       (minimal stub for App Service)
+        # WEBSITE_RUN_FROM_PACKAGE=1 mounts this zip read-only and runs
+        # `node server.js` (App Service's startup command).
+        run: |
+          set -euo pipefail
+          STAGE="$RUNNER_TEMP/app"
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/.next"
+          cp -r .next/standalone/. "$STAGE/"
+          cp -r .next/static "$STAGE/.next/static"
+          cp -r public "$STAGE/public"
+          cat > "$STAGE/package.json" <<'PKGEOF'
+          {
+            "name": "movequest",
+            "private": true,
+            "scripts": { "start": "node server.js" },
+            "engines": { "node": ">=22.11.0 <23.0.0" }
+          }
+          PKGEOF
+          (cd "$STAGE" && zip -qr "${GITHUB_WORKSPACE}/app.zip" .)
+          ls -la "${GITHUB_WORKSPACE}/app.zip"
+
+      # OIDC login. Note the absence of `client-secret` — only client-id +
+      # tenant-id + subscription-id are passed (constraint:
+      # no-long-lived-azure-secrets).
+      - name: Azure login (OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      # Atomic swap: App Service replaces the in-place zip with the new
+      # one and restarts the worker. Previous zip remains live until the
+      # new one boots, so failed deploys leave the site working.
+      - name: Deploy to App Service
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ vars.AZURE_WEBAPP_NAME }}
+          resource-group-name: ${{ vars.AZURE_RESOURCE_GROUP }}
+          package: ./app.zip
+          type: zip
+
+      # F1 has no Always On, so the freshly-swapped instance can take
+      # several seconds to warm up. Retry both probes for ~60s before
+      # declaring failure (constraint: smoke-gate).
+      - name: Smoke — /api/health and /en
+        env:
+          BASE_URL: https://${{ vars.AZURE_WEBAPP_NAME }}.azurewebsites.net
+        run: |
+          set -euo pipefail
+          probe_with_retry() {
+            local url="$1"
+            local pattern="$2"
+            local max_attempts=12   # 12 × 5s = 60s budget
+            local delay_seconds=5
+            local attempt=0
+            while [[ "${attempt}" -lt "${max_attempts}" ]]; do
+              attempt=$((attempt + 1))
+              echo "::group::probe ${url} (attempt ${attempt}/${max_attempts})"
+              local response_file
+              response_file="$(mktemp)"
+              local status_code
+              status_code="$(curl --silent --show-error \
+                --output "${response_file}" \
+                --write-out '%{http_code}' \
+                "${url}" || echo '000')"
+              echo "  http_status=${status_code}"
+              if [[ "${status_code}" == "200" ]] && grep -q "${pattern}" "${response_file}"; then
+                echo "  matched expected pattern: ${pattern}"
+                rm -f "${response_file}"
+                echo "::endgroup::"
+                return 0
+              fi
+              if [[ "${status_code}" == "200" ]]; then
+                echo "  body did not contain expected pattern: ${pattern}"
+              fi
+              rm -f "${response_file}"
+              echo "::endgroup::"
+              sleep "${delay_seconds}"
+            done
+            echo "smoke check failed: ${url}" >&2
+            return 1
+          }
+
+          probe_with_retry "${BASE_URL}/api/health" '"status":"ok"'
+          probe_with_retry "${BASE_URL}/en" '<html'

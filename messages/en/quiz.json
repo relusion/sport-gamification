@@ -1,0 +1,155 @@
+{
+  "ui": {
+    "next": "Next",
+    "back": "Back",
+    "restart": "Start over",
+    "confirmRestart": "Start over? Your answers so far will be cleared.",
+    "confirmRestartYes": "Yes, start over",
+    "confirmRestartNo": "Keep going",
+    "review": {
+      "title": "Take one more look",
+      "subtitle": "Edit anything that doesn't feel quite right.",
+      "edit": "Edit",
+      "questionLabel": "Question {n}"
+    },
+    "seeResults": "See results",
+    "editAnswer": "Edit",
+    "intro": {
+      "title": "Ready to begin?",
+      "subtitle": "A short, playful quest about how you like to move. Twelve questions, no wrong answers.",
+      "start": "Start"
+    },
+    "stepLabel": "Question {n} of {total}",
+    "rankingRow": "Rank {position}: {label}. Use arrow up or arrow down to reorder.",
+    "rankingMoveUp": "Move {label} up",
+    "rankingMoveDown": "Move {label} down"
+  },
+  "areas": {
+    "social": "Social",
+    "energy": "Energy",
+    "environment": "Environment",
+    "movement": "Movement",
+    "contact": "Contact",
+    "preference": "Preference",
+    "practical": "Practical"
+  },
+  "progress": {
+    "label": "Progress: {done} of {total} answered"
+  },
+  "movementMap": {
+    "title": "Your map",
+    "areaUnlit": "Not yet",
+    "areaLit": "Answered"
+  },
+  "placeholder": {
+    "results": {
+      "title": "Almost there",
+      "body": "We saved your answers. The results view is on its way — come back soon to see what fits you."
+    }
+  },
+  "questions": {
+    "q-social-1": {
+      "prompt": "Where do you feel best?",
+      "answers": {
+        "alone": "On my own",
+        "duo": "With one other person",
+        "group": "In a small group"
+      }
+    },
+    "q-social-2": {
+      "prompt": "Side by side, or just you?",
+      "answers": {
+        "team-side": "Side by side with others",
+        "by-myself": "Just me, focused"
+      }
+    },
+    "q-energy-1": {
+      "prompt": "What pace feels right today?",
+      "answers": {
+        "s0": "Very calm",
+        "s1": "Easy and steady",
+        "s2": "A middle gear",
+        "s3": "Lively",
+        "s4": "Full speed ahead"
+      }
+    },
+    "q-energy-2": {
+      "prompt": "What lights you up?",
+      "answers": {
+        "new-stuff": "Trying something new",
+        "repetition": "Repeating until it clicks",
+        "variety": "Mixing it up day to day",
+        "consistency": "A steady, familiar groove"
+      }
+    },
+    "q-environment-1": {
+      "prompt": "What kind of place feels like home?",
+      "answers": {
+        "outdoor": "Outside, under the sky",
+        "indoor": "Inside, with clear space",
+        "calm": "Somewhere quiet",
+        "freeform": "Anywhere — I'm flexible"
+      }
+    },
+    "q-movement-1": {
+      "prompt": "How do you most like to move?",
+      "answers": {
+        "ground": "Steady and grounded",
+        "balance": "Finding balance",
+        "power": "Pushing hard for short bursts",
+        "flow": "Long, smooth motion"
+      }
+    },
+    "q-movement-2": {
+      "prompt": "What style of motion fits you?",
+      "answers": {
+        "structured": "Step by step",
+        "freeform": "Free and flowing",
+        "burst": "Quick bursts",
+        "calm": "Slow and steady"
+      }
+    },
+    "q-contact-1": {
+      "prompt": "Brushing past other people — how do you feel about that?",
+      "answers": {
+        "soft-contact": "A bit of jostling is fine",
+        "no-contact": "I'd rather have my own space"
+      }
+    },
+    "q-preference-1": {
+      "prompt": "Order these from most to least important to you",
+      "answers": {
+        "speed": "Speed",
+        "skill": "Skill",
+        "endurance": "Endurance",
+        "expression": "Self expression"
+      }
+    },
+    "q-preference-2": {
+      "prompt": "Plan everything, or keep it loose?",
+      "answers": {
+        "f0": "Plan every detail",
+        "f1": "A loose plan",
+        "f2": "Mix it up",
+        "f3": "Free and easy"
+      }
+    },
+    "q-practical-1": {
+      "prompt": "When does your energy show up?",
+      "answers": {
+        "morning": "Bright and early",
+        "afternoon": "Mid-day",
+        "evening": "After the day winds down"
+      }
+    },
+    "q-practical-2": {
+      "prompt": "When could it fit into your week?",
+      "answers": {
+        "weekday": "On weekdays",
+        "weekend": "On weekends",
+        "after-school": "After school",
+        "at-home": "Right at home"
+      }
+    }
+  }
+}

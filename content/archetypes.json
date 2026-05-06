@@ -1,0 +1,72 @@
+[
+  {
+    "id": "fast-team-explorer",
+    "nameKey": "match.archetypes.fast-team-explorer.name",
+    "descriptionKey": "match.archetypes.fast-team-explorer.description",
+    "traitWeights": { "team": 3, "social": 2, "energy": 2, "burst": 2, "outdoor": 1, "speed": 1 },
+    "recommendedActivityIds": ["football", "basketball", "ultimate-frisbee", "volleyball"]
+  },
+  {
+    "id": "precision-challenger",
+    "nameKey": "match.archetypes.precision-challenger.name",
+    "descriptionKey": "match.archetypes.precision-challenger.description",
+    "traitWeights": { "focus": 3, "structured": 3, "coordination": 2, "balance": 1, "speed": 1 },
+    "recommendedActivityIds": ["fencing", "archery", "tennis", "table-tennis", "martial-arts"]
+  },
+  {
+    "id": "balance-rhythm-creator",
+    "nameKey": "match.archetypes.balance-rhythm-creator.name",
+    "descriptionKey": "match.archetypes.balance-rhythm-creator.description",
+    "traitWeights": { "rhythm": 3, "expression": 3, "balance": 2, "flexibility": 2, "freeform": 1 },
+    "recommendedActivityIds": ["dance", "capoeira", "ice-skating", "ballet"]
+  },
+  {
+    "id": "outdoor-endurance-adventurer",
+    "nameKey": "match.archetypes.outdoor-endurance-adventurer.name",
+    "descriptionKey": "match.archetypes.outdoor-endurance-adventurer.description",
+    "traitWeights": { "outdoor": 3, "endurance": 3, "freeform": 2, "energy": 1 },
+    "recommendedActivityIds": ["hiking", "running", "cycling", "kayaking"]
+  },
+  {
+    "id": "power-builder",
+    "nameKey": "match.archetypes.power-builder.name",
+    "descriptionKey": "match.archetypes.power-builder.description",
+    "traitWeights": { "strength": 3, "structured": 2, "focus": 2, "energy": 1 },
+    "recommendedActivityIds": ["weightlifting", "boxing", "rock-climbing", "bouldering"]
+  },
+  {
+    "id": "strategy-mover",
+    "nameKey": "match.archetypes.strategy-mover.name",
+    "descriptionKey": "match.archetypes.strategy-mover.description",
+    "traitWeights": { "focus": 3, "structured": 2, "team": 2, "social": 2, "coordination": 1 },
+    "recommendedActivityIds": ["basketball", "volleyball", "baseball", "football"]
+  },
+  {
+    "id": "calm-focus-mover",
+    "nameKey": "match.archetypes.calm-focus-mover.name",
+    "descriptionKey": "match.archetypes.calm-focus-mover.description",
+    "traitWeights": { "calm": 3, "focus": 3, "balance": 2, "indoor": 1, "flexibility": 1 },
+    "recommendedActivityIds": ["yoga", "tai-chi", "archery", "swimming"]
+  },
+  {
+    "id": "skill-trick-explorer",
+    "nameKey": "match.archetypes.skill-trick-explorer.name",
+    "descriptionKey": "match.archetypes.skill-trick-explorer.description",
+    "traitWeights": { "burst": 3, "freeform": 2, "balance": 2, "expression": 2, "coordination": 1 },
+    "recommendedActivityIds": ["skateboarding", "parkour", "trampoline", "gymnastics"]
+  },
+  {
+    "id": "water-flow-explorer",
+    "nameKey": "match.archetypes.water-flow-explorer.name",
+    "descriptionKey": "match.archetypes.water-flow-explorer.description",
+    "traitWeights": { "water": 3, "calm": 2, "endurance": 2, "freeform": 1, "outdoor": 1 },
+    "recommendedActivityIds": ["swimming", "surfing", "kayaking", "rowing"]
+  },
+  {
+    "id": "flexible-performer",
+    "nameKey": "match.archetypes.flexible-performer.name",
+    "descriptionKey": "match.archetypes.flexible-performer.description",
+    "traitWeights": { "flexibility": 3, "expression": 3, "rhythm": 2, "freeform": 2, "balance": 1 },
+    "recommendedActivityIds": ["dance", "ballet", "gymnastics", "capoeira"]
+  }
+]

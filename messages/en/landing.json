@@ -1,0 +1,25 @@
+{
+  "hero": {
+    "eyebrow": "Find what moves you",
+    "title": "Discover how you love to move",
+    "subtitle": "A short, playful quest about how you like to move. No labels. No leaderboards. Just curiosity.",
+    "cta": "Start the quest",
+    "ctaAria": "Start the quest"
+  },
+  "explainer": {
+    "title": "We don't ask about activity names",
+    "body": "Most discovery tools start by asking what you already do. We start by asking how you like to move — calm or wild, on your own or with friends, indoors or outside. The labels come later, and only as suggestions to try."
+  },
+  "trust": {
+    "title": "Quiet by design",
+    "body": "Built for kids and teens. No accounts. No emails. No tracking. Nothing leaves your device until you decide to share it.",
+    "items": {
+      "noAds": "No ads, no sponsors, no affiliate links.",
+      "noPii": "No accounts and no personal info — not now, not later.",
+      "noTracking": "No analytics, no third-party scripts, no fingerprints."
+    }
+  },
+  "header": {
+    "skipToContent": "Skip to main content"
+  }
+}

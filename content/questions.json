@@ -1,0 +1,313 @@
+[
+  {
+    "id": "q-social-1",
+    "type": "single",
+    "area": "social",
+    "promptKey": "quiz.questions.q-social-1.prompt",
+    "answers": [
+      {
+        "id": "alone",
+        "labelKey": "quiz.questions.q-social-1.answers.alone",
+        "tagWeights": { "calm": 2, "focus": 1 }
+      },
+      {
+        "id": "duo",
+        "labelKey": "quiz.questions.q-social-1.answers.duo",
+        "tagWeights": { "social": 1, "focus": 1 }
+      },
+      {
+        "id": "group",
+        "labelKey": "quiz.questions.q-social-1.answers.group",
+        "tagWeights": { "social": 2, "energy": 1 }
+      }
+    ]
+  },
+  {
+    "id": "q-social-2",
+    "type": "would-you-rather",
+    "area": "social",
+    "promptKey": "quiz.questions.q-social-2.prompt",
+    "answers": [
+      {
+        "id": "team-side",
+        "labelKey": "quiz.questions.q-social-2.answers.team-side",
+        "tagWeights": { "team": 2, "social": 1 }
+      },
+      {
+        "id": "by-myself",
+        "labelKey": "quiz.questions.q-social-2.answers.by-myself",
+        "tagWeights": { "focus": 2, "calm": 1 }
+      }
+    ]
+  },
+  {
+    "id": "q-energy-1",
+    "type": "slider",
+    "area": "energy",
+    "promptKey": "quiz.questions.q-energy-1.prompt",
+    "answers": [
+      {
+        "id": "s0",
+        "labelKey": "quiz.questions.q-energy-1.answers.s0",
+        "tagWeights": { "calm": 2 }
+      },
+      {
+        "id": "s1",
+        "labelKey": "quiz.questions.q-energy-1.answers.s1",
+        "tagWeights": { "calm": 1, "focus": 1 }
+      },
+      {
+        "id": "s2",
+        "labelKey": "quiz.questions.q-energy-1.answers.s2",
+        "tagWeights": { "focus": 1, "energy": 1 }
+      },
+      {
+        "id": "s3",
+        "labelKey": "quiz.questions.q-energy-1.answers.s3",
+        "tagWeights": { "energy": 2 }
+      },
+      {
+        "id": "s4",
+        "labelKey": "quiz.questions.q-energy-1.answers.s4",
+        "tagWeights": { "energy": 2, "burst": 1 }
+      }
+    ]
+  },
+  {
+    "id": "q-energy-2",
+    "type": "multi",
+    "area": "energy",
+    "promptKey": "quiz.questions.q-energy-2.prompt",
+    "answers": [
+      {
+        "id": "new-stuff",
+        "labelKey": "quiz.questions.q-energy-2.answers.new-stuff",
+        "tagWeights": { "burst": 1, "energy": 1 }
+      },
+      {
+        "id": "repetition",
+        "labelKey": "quiz.questions.q-energy-2.answers.repetition",
+        "tagWeights": { "focus": 2 }
+      },
+      {
+        "id": "variety",
+        "labelKey": "quiz.questions.q-energy-2.answers.variety",
+        "tagWeights": { "energy": 1, "burst": 1 }
+      },
+      {
+        "id": "consistency",
+        "labelKey": "quiz.questions.q-energy-2.answers.consistency",
+        "tagWeights": { "calm": 1, "focus": 1 }
+      }
+    ]
+  },
+  {
+    "id": "q-environment-1",
+    "type": "visual",
+    "area": "environment",
+    "promptKey": "quiz.questions.q-environment-1.prompt",
+    "answers": [
+      {
+        "id": "outdoor",
+        "labelKey": "quiz.questions.q-environment-1.answers.outdoor",
+        "tagWeights": { "outdoor": 2 }
+      },
+      {
+        "id": "indoor",
+        "labelKey": "quiz.questions.q-environment-1.answers.indoor",
+        "tagWeights": { "indoor": 2 }
+      },
+      {
+        "id": "calm",
+        "labelKey": "quiz.questions.q-environment-1.answers.calm",
+        "tagWeights": { "calm": 2, "focus": 1 }
+      },
+      {
+        "id": "freeform",
+        "labelKey": "quiz.questions.q-environment-1.answers.freeform",
+        "tagWeights": { "freeform": 1, "burst": 1 }
+      }
+    ]
+  },
+  {
+    "id": "q-movement-1",
+    "type": "multi",
+    "area": "movement",
+    "promptKey": "quiz.questions.q-movement-1.prompt",
+    "answers": [
+      {
+        "id": "ground",
+        "labelKey": "quiz.questions.q-movement-1.answers.ground",
+        "tagWeights": { "calm": 1, "focus": 1 }
+      },
+      {
+        "id": "balance",
+        "labelKey": "quiz.questions.q-movement-1.answers.balance",
+        "tagWeights": { "focus": 2 }
+      },
+      {
+        "id": "power",
+        "labelKey": "quiz.questions.q-movement-1.answers.power",
+        "tagWeights": { "burst": 2, "energy": 1 }
+      },
+      {
+        "id": "flow",
+        "labelKey": "quiz.questions.q-movement-1.answers.flow",
+        "tagWeights": { "calm": 1, "endurance": 1 }
+      }
+    ]
+  },
+  {
+    "id": "q-movement-2",
+    "type": "visual",
+    "area": "movement",
+    "promptKey": "quiz.questions.q-movement-2.prompt",
+    "answers": [
+      {
+        "id": "structured",
+        "labelKey": "quiz.questions.q-movement-2.answers.structured",
+        "tagWeights": { "structured": 2, "focus": 1 }
+      },
+      {
+        "id": "freeform",
+        "labelKey": "quiz.questions.q-movement-2.answers.freeform",
+        "tagWeights": { "freeform": 2, "energy": 1 }
+      },
+      {
+        "id": "burst",
+        "labelKey": "quiz.questions.q-movement-2.answers.burst",
+        "tagWeights": { "burst": 2, "energy": 1 }
+      },
+      {
+        "id": "calm",
+        "labelKey": "quiz.questions.q-movement-2.answers.calm",
+        "tagWeights": { "calm": 2 }
+      }
+    ]
+  },
+  {
+    "id": "q-contact-1",
+    "type": "would-you-rather",
+    "area": "contact",
+    "promptKey": "quiz.questions.q-contact-1.prompt",
+    "answers": [
+      {
+        "id": "soft-contact",
+        "labelKey": "quiz.questions.q-contact-1.answers.soft-contact",
+        "tagWeights": { "social": 1, "team": 1 }
+      },
+      {
+        "id": "no-contact",
+        "labelKey": "quiz.questions.q-contact-1.answers.no-contact",
+        "tagWeights": { "focus": 1, "calm": 1 }
+      }
+    ]
+  },
+  {
+    "id": "q-preference-1",
+    "type": "ranking",
+    "area": "preference",
+    "promptKey": "quiz.questions.q-preference-1.prompt",
+    "answers": [
+      {
+        "id": "speed",
+        "labelKey": "quiz.questions.q-preference-1.answers.speed",
+        "tagWeights": { "energy": 1, "burst": 1 }
+      },
+      {
+        "id": "skill",
+        "labelKey": "quiz.questions.q-preference-1.answers.skill",
+        "tagWeights": { "focus": 2 }
+      },
+      {
+        "id": "endurance",
+        "labelKey": "quiz.questions.q-preference-1.answers.endurance",
+        "tagWeights": { "endurance": 2, "calm": 1 }
+      },
+      {
+        "id": "expression",
+        "labelKey": "quiz.questions.q-preference-1.answers.expression",
+        "tagWeights": { "expression": 2, "freeform": 1 }
+      }
+    ]
+  },
+  {
+    "id": "q-preference-2",
+    "type": "slider",
+    "area": "preference",
+    "promptKey": "quiz.questions.q-preference-2.prompt",
+    "answers": [
+      {
+        "id": "f0",
+        "labelKey": "quiz.questions.q-preference-2.answers.f0",
+        "tagWeights": { "structured": 2, "focus": 1 }
+      },
+      {
+        "id": "f1",
+        "labelKey": "quiz.questions.q-preference-2.answers.f1",
+        "tagWeights": { "structured": 1, "focus": 1 }
+      },
+      {
+        "id": "f2",
+        "labelKey": "quiz.questions.q-preference-2.answers.f2",
+        "tagWeights": { "freeform": 1, "energy": 1 }
+      },
+      {
+        "id": "f3",
+        "labelKey": "quiz.questions.q-preference-2.answers.f3",
+        "tagWeights": { "freeform": 2 }
+      }
+    ]
+  },
+  {
+    "id": "q-practical-1",
+    "type": "single",
+    "area": "practical",
+    "promptKey": "quiz.questions.q-practical-1.prompt",
+    "answers": [
+      {
+        "id": "morning",
+        "labelKey": "quiz.questions.q-practical-1.answers.morning",
+        "tagWeights": { "morning": 2, "focus": 1 }
+      },
+      {
+        "id": "afternoon",
+        "labelKey": "quiz.questions.q-practical-1.answers.afternoon",
+        "tagWeights": { "focus": 1, "energy": 1 }
+      },
+      {
+        "id": "evening",
+        "labelKey": "quiz.questions.q-practical-1.answers.evening",
+        "tagWeights": { "evening": 2 }
+      }
+    ]
+  },
+  {
+    "id": "q-practical-2",
+    "type": "multi",
+    "area": "practical",
+    "promptKey": "quiz.questions.q-practical-2.prompt",
+    "answers": [
+      {
+        "id": "weekday",
+        "labelKey": "quiz.questions.q-practical-2.answers.weekday",
+        "tagWeights": { "practical": 1, "focus": 1 }
+      },
+      {
+        "id": "weekend",
+        "labelKey": "quiz.questions.q-practical-2.answers.weekend",
+        "tagWeights": { "practical": 1, "freeform": 1 }
+      },
+      {
+        "id": "after-school",
+        "labelKey": "quiz.questions.q-practical-2.answers.after-school",
+        "tagWeights": { "practical": 1, "social": 1 }
+      },
+      {
+        "id": "at-home",
+        "labelKey": "quiz.questions.q-practical-2.answers.at-home",
+        "tagWeights": { "indoor": 1, "calm": 1 }
+      }
+    ]
+  }
+]

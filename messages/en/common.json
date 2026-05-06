@@ -1,0 +1,10 @@
+{
+  "brand": {
+    "name": "MoveQuest"
+  },
+  "language": {
+    "label": "Language",
+    "english": "English",
+    "russian": "Русский"
+  }
+}

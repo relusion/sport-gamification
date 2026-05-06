@@ -1,0 +1,502 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`computeMatchResult against real seed (5 persona snapshots) > persona 'balanced' produces a stable MatchResult 1`] = `
+{
+  "mainArchetypeId": "fast-team-explorer",
+  "rankedActivities": [
+    {
+      "componentBreakdown": {
+        "confidence_fit": 4,
+        "environment_fit": 4,
+        "practical_fit": 0,
+        "preference_fit": 4,
+        "social_fit": 8,
+      },
+      "id": "ultimate-frisbee",
+      "score": 20,
+      "topTags": [
+        "team",
+        "energy",
+        "freeform",
+      ],
+    },
+    {
+      "componentBreakdown": {
+        "confidence_fit": 0,
+        "environment_fit": 4,
+        "practical_fit": 0,
+        "preference_fit": 4,
+        "social_fit": 10,
+      },
+      "id": "baseball",
+      "score": 18,
+      "topTags": [
+        "team",
+        "outdoor",
+        "social",
+      ],
+    },
+    {
+      "componentBreakdown": {
+        "confidence_fit": 4,
+        "environment_fit": 4,
+        "practical_fit": 0,
+        "preference_fit": 0,
+        "social_fit": 10,
+      },
+      "id": "football",
+      "score": 18,
+      "topTags": [
+        "team",
+        "endurance",
+        "outdoor",
+      ],
+    },
+    {
+      "componentBreakdown": {
+        "confidence_fit": 4,
+        "environment_fit": 2,
+        "practical_fit": 0,
+        "preference_fit": 0,
+        "social_fit": 10,
+      },
+      "id": "basketball",
+      "score": 16,
+      "topTags": [
+        "team",
+        "social",
+        "burst",
+      ],
+    },
+    {
+      "componentBreakdown": {
+        "confidence_fit": 10,
+        "environment_fit": 4,
+        "practical_fit": 0,
+        "preference_fit": 2,
+        "social_fit": 0,
+      },
+      "id": "cycling",
+      "score": 16,
+      "topTags": [
+        "endurance",
+        "energy",
+        "outdoor",
+      ],
+    },
+  ],
+  "reasonKeys": {
+    "activities": {
+      "baseball": "match.activities.baseball.fit",
+      "basketball": "match.activities.basketball.fit",
+      "cycling": "match.activities.cycling.fit",
+      "football": "match.activities.football.fit",
+      "ultimate-frisbee": "match.activities.ultimate-frisbee.fit",
+    },
+    "archetype": "match.archetypes.fast-team-explorer.flavor",
+  },
+  "secondaryArchetypeIds": [
+    "outdoor-endurance-adventurer",
+    "strategy-mover",
+  ],
+  "version": 1,
+}
+`;
+
+exports[`computeMatchResult against real seed (5 persona snapshots) > persona 'calm-focus' produces a stable MatchResult 1`] = `
+{
+  "mainArchetypeId": "calm-focus-mover",
+  "rankedActivities": [
+    {
+      "componentBreakdown": {
+        "confidence_fit": 10,
+        "environment_fit": 0,
+        "practical_fit": 0,
+        "preference_fit": 16,
+        "social_fit": 0,
+      },
+      "id": "archery",
+      "score": 26,
+      "topTags": [
+        "focus",
+        "calm",
+        "structured",
+      ],
+    },
+    {
+      "componentBreakdown": {
+        "confidence_fit": 15,
+        "environment_fit": 3,
+        "practical_fit": 0,
+        "preference_fit": 8,
+        "social_fit": 0,
+      },
+      "id": "yoga",
+      "score": 26,
+      "topTags": [
+        "calm",
+        "focus",
+        "indoor",
+      ],
+    },
+    {
+      "componentBreakdown": {
+        "confidence_fit": 15,
+        "environment_fit": 0,
+        "practical_fit": 0,
+        "preference_fit": 8,
+        "social_fit": 0,
+      },
+      "id": "tai-chi",
+      "score": 23,
+      "topTags": [
+        "calm",
+        "focus",
+      ],
+    },
+    {
+      "componentBreakdown": {
+        "confidence_fit": 0,
+        "environment_fit": 3,
+        "practical_fit": 0,
+        "preference_fit": 14,
+        "social_fit": 0,
+      },
+      "id": "weightlifting",
+      "score": 17,
+      "topTags": [
+        "focus",
+        "structured",
+        "indoor",
+      ],
+    },
+    {
+      "componentBreakdown": {
+        "confidence_fit": 0,
+        "environment_fit": 0,
+        "practical_fit": 0,
+        "preference_fit": 16,
+        "social_fit": 0,
+      },
+      "id": "fencing",
+      "score": 16,
+      "topTags": [
+        "focus",
+        "structured",
+      ],
+    },
+  ],
+  "reasonKeys": {
+    "activities": {
+      "archery": "match.activities.archery.fit",
+      "fencing": "match.activities.fencing.fit",
+      "tai-chi": "match.activities.tai-chi.fit",
+      "weightlifting": "match.activities.weightlifting.fit",
+      "yoga": "match.activities.yoga.fit",
+    },
+    "archetype": "match.archetypes.calm-focus-mover.flavor",
+  },
+  "secondaryArchetypeIds": [],
+  "version": 1,
+}
+`;
+
+exports[`computeMatchResult against real seed (5 persona snapshots) > persona 'expression-rhythm' produces a stable MatchResult 1`] = `
+{
+  "mainArchetypeId": "skill-trick-explorer",
+  "rankedActivities": [
+    {
+      "componentBreakdown": {
+        "confidence_fit": 0,
+        "environment_fit": 0,
+        "practical_fit": 0,
+        "preference_fit": 23,
+        "social_fit": 0,
+      },
+      "id": "capoeira",
+      "score": 23,
+      "topTags": [
+        "expression",
+        "freeform",
+      ],
+    },
+    {
+      "componentBreakdown": {
+        "confidence_fit": 0,
+        "environment_fit": 0,
+        "practical_fit": 0,
+        "preference_fit": 23,
+        "social_fit": 0,
+      },
+      "id": "dance",
+      "score": 23,
+      "topTags": [
+        "expression",
+        "freeform",
+      ],
+    },
+    {
+      "componentBreakdown": {
+        "confidence_fit": 6,
+        "environment_fit": 3,
+        "practical_fit": 0,
+        "preference_fit": 14,
+        "social_fit": 0,
+      },
+      "id": "trampoline",
+      "score": 23,
+      "topTags": [
+        "expression",
+        "burst",
+        "freeform",
+      ],
+    },
+    {
+      "componentBreakdown": {
+        "confidence_fit": 0,
+        "environment_fit": 0,
+        "practical_fit": 0,
+        "preference_fit": 22,
+        "social_fit": 0,
+      },
+      "id": "skateboarding",
+      "score": 22,
+      "topTags": [
+        "freeform",
+        "expression",
+      ],
+    },
+    {
+      "componentBreakdown": {
+        "confidence_fit": 4,
+        "environment_fit": 0,
+        "practical_fit": 0,
+        "preference_fit": 12,
+        "social_fit": 0,
+      },
+      "id": "parkour",
+      "score": 16,
+      "topTags": [
+        "freeform",
+        "burst",
+        "energy",
+      ],
+    },
+  ],
+  "reasonKeys": {
+    "activities": {
+      "capoeira": "match.activities.capoeira.fit",
+      "dance": "match.activities.dance.fit",
+      "parkour": "match.activities.parkour.fit",
+      "skateboarding": "match.activities.skateboarding.fit",
+      "trampoline": "match.activities.trampoline.fit",
+    },
+    "archetype": "match.archetypes.skill-trick-explorer.flavor",
+  },
+  "secondaryArchetypeIds": [
+    "flexible-performer",
+    "balance-rhythm-creator",
+  ],
+  "version": 1,
+}
+`;
+
+exports[`computeMatchResult against real seed (5 persona snapshots) > persona 'outdoor-endurance' produces a stable MatchResult 1`] = `
+{
+  "mainArchetypeId": "outdoor-endurance-adventurer",
+  "rankedActivities": [
+    {
+      "componentBreakdown": {
+        "confidence_fit": 16,
+        "environment_fit": 10,
+        "practical_fit": 0,
+        "preference_fit": 3,
+        "social_fit": 0,
+      },
+      "id": "cycling",
+      "score": 29,
+      "topTags": [
+        "endurance",
+        "outdoor",
+        "energy",
+      ],
+    },
+    {
+      "componentBreakdown": {
+        "confidence_fit": 10,
+        "environment_fit": 15,
+        "practical_fit": 0,
+        "preference_fit": 3,
+        "social_fit": 0,
+      },
+      "id": "hiking",
+      "score": 28,
+      "topTags": [
+        "outdoor",
+        "endurance",
+        "freeform",
+      ],
+    },
+    {
+      "componentBreakdown": {
+        "confidence_fit": 16,
+        "environment_fit": 5,
+        "practical_fit": 0,
+        "preference_fit": 0,
+        "social_fit": 0,
+      },
+      "id": "running",
+      "score": 21,
+      "topTags": [
+        "endurance",
+        "outdoor",
+        "energy",
+      ],
+    },
+    {
+      "componentBreakdown": {
+        "confidence_fit": 4,
+        "environment_fit": 10,
+        "practical_fit": 0,
+        "preference_fit": 6,
+        "social_fit": 0,
+      },
+      "id": "ultimate-frisbee",
+      "score": 20,
+      "topTags": [
+        "outdoor",
+        "freeform",
+        "energy",
+      ],
+    },
+    {
+      "componentBreakdown": {
+        "confidence_fit": 9,
+        "environment_fit": 10,
+        "practical_fit": 0,
+        "preference_fit": 0,
+        "social_fit": 0,
+      },
+      "id": "kayaking",
+      "score": 19,
+      "topTags": [
+        "outdoor",
+        "endurance",
+        "calm",
+      ],
+    },
+  ],
+  "reasonKeys": {
+    "activities": {
+      "cycling": "match.activities.cycling.fit",
+      "hiking": "match.activities.hiking.fit",
+      "kayaking": "match.activities.kayaking.fit",
+      "running": "match.activities.running.fit",
+      "ultimate-frisbee": "match.activities.ultimate-frisbee.fit",
+    },
+    "archetype": "match.archetypes.outdoor-endurance-adventurer.flavor",
+  },
+  "secondaryArchetypeIds": [],
+  "version": 1,
+}
+`;
+
+exports[`computeMatchResult against real seed (5 persona snapshots) > persona 'team-energy' produces a stable MatchResult 1`] = `
+{
+  "mainArchetypeId": "fast-team-explorer",
+  "rankedActivities": [
+    {
+      "componentBreakdown": {
+        "confidence_fit": 8,
+        "environment_fit": 6,
+        "practical_fit": 0,
+        "preference_fit": 2,
+        "social_fit": 19,
+      },
+      "id": "ultimate-frisbee",
+      "score": 35,
+      "topTags": [
+        "team",
+        "energy",
+        "outdoor",
+      ],
+    },
+    {
+      "componentBreakdown": {
+        "confidence_fit": 10,
+        "environment_fit": 0,
+        "practical_fit": 0,
+        "preference_fit": 0,
+        "social_fit": 23,
+      },
+      "id": "basketball",
+      "score": 33,
+      "topTags": [
+        "team",
+        "social",
+        "burst",
+      ],
+    },
+    {
+      "componentBreakdown": {
+        "confidence_fit": 4,
+        "environment_fit": 6,
+        "practical_fit": 0,
+        "preference_fit": 0,
+        "social_fit": 23,
+      },
+      "id": "football",
+      "score": 33,
+      "topTags": [
+        "team",
+        "social",
+        "outdoor",
+      ],
+    },
+    {
+      "componentBreakdown": {
+        "confidence_fit": 0,
+        "environment_fit": 6,
+        "practical_fit": 0,
+        "preference_fit": 2,
+        "social_fit": 23,
+      },
+      "id": "baseball",
+      "score": 31,
+      "topTags": [
+        "team",
+        "social",
+        "outdoor",
+      ],
+    },
+    {
+      "componentBreakdown": {
+        "confidence_fit": 6,
+        "environment_fit": 0,
+        "practical_fit": 0,
+        "preference_fit": 0,
+        "social_fit": 23,
+      },
+      "id": "volleyball",
+      "score": 29,
+      "topTags": [
+        "team",
+        "social",
+        "burst",
+      ],
+    },
+  ],
+  "reasonKeys": {
+    "activities": {
+      "baseball": "match.activities.baseball.fit",
+      "basketball": "match.activities.basketball.fit",
+      "football": "match.activities.football.fit",
+      "ultimate-frisbee": "match.activities.ultimate-frisbee.fit",
+      "volleyball": "match.activities.volleyball.fit",
+    },
+    "archetype": "match.archetypes.fast-team-explorer.flavor",
+  },
+  "secondaryArchetypeIds": [],
+  "version": 1,
+}
+`;
