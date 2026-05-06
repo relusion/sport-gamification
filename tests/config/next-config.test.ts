@@ -23,6 +23,13 @@ describe("next.config — App Service deploy preconditions", () => {
     expect(wildcard.some((glob) => glob.includes("styled-jsx"))).toBe(true);
   });
 
+  it("force-includes @swc/helpers so the standalone server doesn't crash with `Cannot find module '@swc/helpers/_/_interop_require_default'`", () => {
+    const includes = nextConfig.outputFileTracingIncludes;
+    expect(includes).toBeDefined();
+    const wildcard = includes?.["*"] ?? [];
+    expect(wildcard.some((glob) => glob.includes("@swc/helpers"))).toBe(true);
+  });
+
   it("keeps the static security-headers fallback in place", () => {
     expect(typeof nextConfig.headers).toBe("function");
   });

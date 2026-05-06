@@ -50,15 +50,20 @@ export const nextConfig: NextConfig = {
   poweredByHeader: false,
   output: "standalone",
   outputFileTracingRoot: projectRoot,
-  // Force styled-jsx into the standalone tree at the expected path. Next's
-  // file tracer doesn't always follow the dynamic `require.resolve` inside
-  // next/dist/server/require-hook.js, so on pnpm's symlinked layout the
-  // standalone bundle ships without it and server.js dies at startup with
-  // `Error: Cannot find module 'styled-jsx/package.json'`. The .npmrc hoist
-  // makes ./node_modules/styled-jsx exist as a symlink to the real package
-  // so this glob has a target to match.
+  // Force runtime deps that Next loads via the dynamic `require.resolve`
+  // inside next/dist/server/require-hook.js into the standalone tree.
+  // Next's file tracer doesn't always follow that hook, so on pnpm's
+  // symlinked layout the standalone bundle ships without these and
+  // server.js dies at startup with errors like:
+  //   `Error: Cannot find module 'styled-jsx/package.json'`
+  //   `Error: Cannot find module '@swc/helpers/_/_interop_require_default'`
+  // The matching `public-hoist-pattern` entries in .npmrc make the
+  // ./node_modules/<pkg> symlinks exist so these globs have targets.
   outputFileTracingIncludes: {
-    "*": ["./node_modules/styled-jsx/**"],
+    "*": [
+      "./node_modules/styled-jsx/**",
+      "./node_modules/@swc/helpers/**",
+    ],
   },
   async headers() {
     return [
