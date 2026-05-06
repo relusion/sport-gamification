@@ -57,7 +57,7 @@ jobs:
       - name: Package standalone artifact
         # Layout inside the zip:
         #   server.js                          (from .next/standalone/)
-        #   node_modules/                      (from .next/standalone/)
+        #   node_modules/                      (from .next/standalone/, includes pnpm symlinks)
         #   .next/static/                      (copied from build output)
         #   public/                            (copied from repo, if present)
         #   package.json                       (minimal stub for App Service)
@@ -65,6 +65,11 @@ jobs:
         # `node server.js` (App Service's startup command).
         # public/ is optional in Next.js — copy only when it exists so this
         # workflow works for repos that don't ship static assets.
+        # `zip -y` (--symlinks) is REQUIRED: pnpm's standalone tree puts
+        # node_modules/next as a symlink into node_modules/.pnpm/next@.../...
+        # Without -y, zip dereferences and the deployed `node_modules/next/`
+        # becomes a real directory whose siblings (`@next/env`, `@swc/helpers`)
+        # are missing, so server.js dies on first require with MODULE_NOT_FOUND.
         run: |
           set -euo pipefail
           STAGE="$RUNNER_TEMP/app"
@@ -85,7 +90,7 @@ jobs:
             "engines": { "node": ">=22.11.0 <23.0.0" }
           }
           PKGEOF
-          (cd "$STAGE" && zip -qr "${GITHUB_WORKSPACE}/app.zip" .)
+          (cd "$STAGE" && zip -qry "${GITHUB_WORKSPACE}/app.zip" .)
           ls -la "${GITHUB_WORKSPACE}/app.zip"
 
       # OIDC login. Note the absence of `client-secret` — only client-id +

@@ -68,7 +68,14 @@ describe(".github/workflows/deploy.yml — push-to-main → Azure App Service", 
     expect(workflow).toMatch(/if \[ -d public \]/);
     expect(workflow).toMatch(/cp -r public /);
     expect(workflow).toMatch(/PKGEOF/); // marks the heredoc that writes the stub
-    expect(workflow).toMatch(/zip -qr/);
+  });
+
+  it("uses `zip -y` (--symlinks) so pnpm's node_modules/next symlink survives the archive", () => {
+    // Without -y, zip dereferences the next symlink into a real directory and
+    // the deployed tree loses sibling resolution to `@next/env`, `@swc/helpers`,
+    // etc. — server.js crashes at startup with MODULE_NOT_FOUND.
+    // Match `zip -<flags>` where the flags include both `r` and `y`.
+    expect(workflow).toMatch(/\bzip\s+-[a-z]*r[a-z]*y[a-z]*\b|\bzip\s+-[a-z]*y[a-z]*r[a-z]*\b/);
   });
 
   it("uses azure/login@v2 with OIDC inputs (client-id + tenant-id + subscription-id) and NO client-secret", () => {
